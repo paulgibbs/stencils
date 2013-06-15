@@ -3,17 +3,38 @@
  * Plugin name: Stencils
  */
 
-function stencils_hack_the_content( $the_content ) {
-	preg_match_all( '|(?<!<br />)\s*\n|', $the_content, $matches );
-	$matches = $matches[0];
+$input = <<<EOF
+<div class="entry-content">
+<p>This is an example page. It’s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:</p>
+<blockquote><p>Hi there! I’m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin’ caught in the rain.)</p></blockquote>
+<p>…or something like this:</p>
+<blockquote><p>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</p></blockquote>
+<p>As a new WordPress user, you should go to <a href="http://www.nsccenter.com/wordpress/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!</p>
+</div>
+EOF;
 
-	// Start to figure out ways of getting information we need - paragraphs, blockquotes, images, galleries.
-	$number_of_paragraphs = count( $matches );
+//http://stackoverflow.com/questions/3820666/grabbing-the-href-attribute-of-an-a-element/3820783#3820783
 
-	return $the_content;
+$dom = new DOMDocument;
+$dom->loadHTML( $input );
+
+echo '<style>
+#demo blockquote {
+	background-color: blue;
 }
-add_filter( 'the_content', 'stencils_hack_the_content', -100 );
 
-function stencils_test_the_content( $the_content ) {
+#demo p {
+	color: red;
 }
-//add_filter( 'the_content', 'stencils_test_the_content' );
+
+#demo a {
+	background-color: yellow;
+}
+</style>';
+
+echo '<h1>DOMDocument demo</h1>';
+echo "<p><blockquote id='demo' style='outline: 1px solid black;'>{$input}</blockquote></p>";
+
+echo '<p>Number of paragraphs (red): ' . $dom->getElementsByTagName( 'p' )->length . '</p>';
+echo '<p>Number of blockquotes (blue): ' . $dom->getElementsByTagName( 'blockquote' )->length . '</p>';
+echo '<p>Number of links (yellow): ' . $dom->getElementsByTagName( 'a' )->length . '</p>';
