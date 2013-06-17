@@ -17,13 +17,14 @@ EOF;
 
 $dom = new DOMDocument;
 $dom->loadHTML( $input );
+$xpath = new DOMXPath( $dom );
 
 echo '<style>
 #demo blockquote {
 	background-color: blue;
 }
 
-#demo p {
+.entry-content > p {
 	color: red;
 }
 
@@ -35,6 +36,6 @@ echo '<style>
 echo '<h1>DOMDocument demo</h1>';
 echo "<p><blockquote id='demo' style='outline: 1px solid black;'>{$input}</blockquote></p>";
 
-echo '<p>Number of paragraphs (red): ' . $dom->getElementsByTagName( 'p' )->length . '</p>';
+echo '<p>Number of paragraphs (red) (should be 3): ' . $xpath->query( "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' entry-content ')]/p" )->length . '</p>';
 echo '<p>Number of blockquotes (blue): ' . $dom->getElementsByTagName( 'blockquote' )->length . '</p>';
 echo '<p>Number of links (yellow): ' . $dom->getElementsByTagName( 'a' )->length . '</p>';
