@@ -1,0 +1,37 @@
+{
+  "author": [
+    "Tammie Lister <example@example.com>",
+    "Paul Gibbs <paul@byotos.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/paulgibbs/stencils/issues"
+  },
+  "description": "StencilsTodo",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-cssjanus": "~0.1.1",
+    "grunt-phpunit": "~0.3.0",
+    "matchdep": "~0.1.2"
+  },
+  "keywords": [
+    "StencilsTodo"
+  ],
+  "homepage": "http://StencilsTodo.com",
+  "licenses": {
+    "type": "GPLv3 StencilsTodo",
+    "url": "https://github.com/paulgibbs/stencils/blob/master/StencilsTodo-license.txt"
+  },
+  "name": "StencilsTodo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulgibbs/stencils.git"
+  },
+  "version": "1.0"
+}
