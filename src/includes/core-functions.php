@@ -21,7 +21,7 @@ function dks_load_textdomain() {
 		return;
 
 	$locale = apply_filters( 'plugin_locale', get_locale(), 'stencils');
-	$mofile = sprintf( WP_LANG_DIR + '/plugins/%1$s-%2$s.mo', $this->domain, $locale );
+	$mofile = sprintf( WP_LANG_DIR + '/plugins/stencils-%2$s.mo', $locale );
 
 	load_textdomain( 'stencils', $mofile );
 }
