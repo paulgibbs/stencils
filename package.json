@@ -25,10 +25,10 @@
   ],
   "homepage": "http://StencilsTodo.com",
   "licenses": {
-    "type": "GPLv3 StencilsTodo",
-    "url": "https://github.com/paulgibbs/stencils/blob/master/StencilsTodo-license.txt"
+    "type": "GPLv3",
+    "url": "https://github.com/paulgibbs/stencils/blob/master/src/license.txt"
   },
-  "name": "StencilsTodo",
+  "name": "stencils-for-wordpress",
   "repository": {
     "type": "git",
     "url": "https://github.com/paulgibbs/stencils.git"

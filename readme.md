@@ -1,4 +1,4 @@
-# Stencils
+# Stencils for WordPress
 
 Requirements
 ------------
