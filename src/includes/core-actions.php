@@ -29,7 +29,7 @@ add_action( 'wp_footer',          'dks_footer',           10 );
  *
  * Attach various loader actions to the dks_loaded action.
  */
-add_action( 'dks_loaded', 'dks_load_textdomain', 2 );
+add_action( 'dks_loaded', 'dks_internationalisation', 2 );
 
 /**
  * dks_init - Attached to 'init' above
@@ -46,3 +46,11 @@ add_action( 'dks_init', 'dks_ready',    999 );
  * The load order helps to execute code at the correct time.
  */
 add_action( 'dks_register', 'dks_add_image_sizes', 2 );
+
+
+/**
+ * Actions past this point all hook actual functions, not psuedo-wrapper functions.
+ */
+
+// Internationalisation
+add_action( 'dks_internationalisation', 'dks_load_textdomain' );
