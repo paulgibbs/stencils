@@ -160,8 +160,9 @@ final class DKS_Stencils_Loader {
 	 * @since Stencils (1.0)
 	 */
 	private function includes() {
-		require( $this->includes_dir . 'core-functions.php' );
-		require( $this->includes_dir . 'core-actions.php'   );
+		require( $this->includes_dir . 'core-dependencies.php' );  // load first
+		require( $this->includes_dir . 'core-functions.php'    );
+		require( $this->includes_dir . 'core-actions.php'      );
 
 		/**
 		 * wp-admin stuff
