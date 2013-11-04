@@ -44,3 +44,27 @@ function dks_add_image_sizes() {}
 function dks_body_class( $wp_classes, $custom_classes = array() ) {
 	return apply_filters( 'dks_body_class', $wp_classes, $custom_classes );
 }
+
+
+/**
+ * "is" functions. Use these to help you make life-changing decisions.
+ */
+
+/**
+ * Is the current post powered by Stencils?
+ *
+ * @param int $post_id Optional, defaults to {@link get_the_ID()}.
+ * @since Stencils (1.0)
+ * @return bool
+ */
+function dks_is_stencils_post( $post_id = 0 ) {
+
+	if ( ! $post_id && is_single() )
+		$post_id = get_the_ID();
+
+	if ( ! $post_id )
+		return false;
+
+	$retval = (bool) get_post_meta( $post_id, 'has_stencils', true );
+	return (bool) apply_filters( 'dks_is_stencils_post', $retval, $post_id );
+}
