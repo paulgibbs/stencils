@@ -25,13 +25,6 @@ add_action( 'wp_head',            'dks_head',             10 );
 add_action( 'wp_footer',          'dks_footer',           10 );
 
 /**
- * dks_loaded - Attached to 'plugins_loaded' above
- *
- * Attach various loader actions to the dks_loaded action.
- */
-add_action( 'dks_loaded', 'dks_internationalisation', 2 );
-
-/**
  * dks_init - Attached to 'init' above
  *
  * Attach various initialisation actions to the init action.
@@ -53,4 +46,4 @@ add_action( 'dks_register', 'dks_add_image_sizes', 2 );
  */
 
 // Internationalisation
-add_action( 'dks_internationalisation', 'dks_load_textdomain' );
+add_action( 'dks_loaded', 'dks_load_textdomain', 2 );

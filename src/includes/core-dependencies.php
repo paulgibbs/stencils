@@ -58,15 +58,6 @@ function dks_ready() {
  */
 
 /**
- * Anything around making Stencils work great in languages other than English
- *
- * @since Stencils (1.0)
- */
-function dks_internationalisation() {
-	do_action( 'dks_internationalisation' );
-}
-
-/**
  * Enqueue CSS and JS
  *
  * @since Stencils (1.0)
