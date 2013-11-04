@@ -32,3 +32,15 @@ function dks_load_textdomain() {
  * @since Stencils (1.0)
  */
 function dks_add_image_sizes() {}
+
+/**
+ * Change the <body> element's CSS class
+ *
+ * @param array $wp_classes
+ * @param array $custom_classes Optional
+ * @return array
+ * @since Stencils (1.0)
+ */
+function dks_body_class( $wp_classes, $custom_classes = array() ) {
+	return apply_filters( 'dks_body_class', $wp_classes, $custom_classes );
+}

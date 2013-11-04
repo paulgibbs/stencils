@@ -163,6 +163,7 @@ final class DKS_Stencils_Loader {
 		require( $this->includes_dir . 'core-dependencies.php' );  // load first
 		require( $this->includes_dir . 'core-functions.php'    );
 		require( $this->includes_dir . 'core-actions.php'      );
+		require( $this->includes_dir . 'core-filters.php'      );
 
 		/**
 		 * wp-admin stuff
