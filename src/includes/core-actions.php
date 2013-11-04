@@ -2,7 +2,7 @@
 /**
  * Core actions
  *
- * This file contains the filters that are used throughout Stencils. They are consolidated here to make searching for them easier, and to help developers understand at a glance the order in which things occur.
+ * This file contains the actions that are used throughout Stencils. They are consolidated here to make searching for them easier, and to help developers understand at a glance the order in which things occur.
  * 
  * @package Stencils
  * @subpackage CoreActions
