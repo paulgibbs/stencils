@@ -14,9 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Attach Stencils to WordPress
  *
- * Stencils uses its own internal actions to help aid in additional plugin
- * development, and to limit the amount of potential future code changes when
- * updates to WordPress occur.
+ * Stencils uses its own internal actions to help aid in additional plugin development, and to limit the amount of potential future code changes when updates to WordPress occur.
  */
 add_action( 'plugins_loaded',     'dks_loaded',           10 );
 add_action( 'init',               'dks_init',             0  ); // Early for dks_register 
