@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Attach Stencils to WordPress
- *
- * Stencils uses its own internal actions to help aid in additional plugin development, and to limit the amount of potential future code changes when updates to WordPress occur.
  */
-add_filter( 'body_class', 'dks_body_class', 10, 2 );
+add_filter( 'body_class',       'dks_body_class', 10, 2 );
+add_filter( 'template_include', 'dks_maybe_load_stencils_template' )
