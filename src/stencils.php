@@ -9,7 +9,7 @@
 
 /*
 Plugin Name: Stencils
-Plugin URI: http://StencilsTodo.com/
+Plugin URI: http://stencilsplugin.com/
 Description: StencilsTodo
 Version: 1.0
 Requires at least: 3.7
