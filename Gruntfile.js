@@ -1,136 +1,170 @@
-/*global module:false*/
-module.exports = function(grunt) {
-	var path = require('path');
-	var SOURCE_DIR = 'src/';
-	var BUILD_DIR = 'build/';
+/* jshint node:true */
+module.exports = function( grunt ) {
+	var SOURCE_DIR = '',
+	BUILD_DIR = 'build/',
+
+	CSS = [
+		'includes/admin/cssjs/*.css',
+		'includes/packs/**/cssjs/*.css'
+	],
+
+	JS = [
+		'includes/admin/cssjs/*.js',
+		'includes/packs/**/cssjs/*.js'
+	],
+
+	EXCLUDED_FILES = [
+		// Ignore these
+		'!tests/**',  // unit tests
+		'!Gruntfile.js',
+		'!package.json',
+		'!.gitignore',
+		'!.jshintrc',
+		'!.travis.yml',
+
+		// And these from .gitignore
+		'!**/.{svn,git}/**',
+		'!lib-cov/**',
+		'!*.seed',
+		'!*.log',
+		'!*.csv',
+		'!*.dat',
+		'!*.out',
+		'!*.pid',
+		'!*.gz',
+		'!pids/**',
+		'!logs/**',
+		'!results/**',
+		'!.DS_Store',
+		'!node_modules/**',
+		'!npm-debug.log',
+		'!build/**'
+	];
 
 	// Load tasks.
-	require('matchdep').filterDev('grunt-*').forEach( grunt.loadNpmTasks );
+	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 
 	// Project configuration.
 	grunt.initConfig({
 		clean: {
-			all: [BUILD_DIR],
-			build: [BUILD_DIR + 'templates/achievements/css/dev/',
-							BUILD_DIR + 'includes/admin/css/dev/'],
-			dynamic: {
-				cwd: BUILD_DIR,
-				dot: true,
-				expand: true,
-				src: [],
-			}
+			all: [ BUILD_DIR ]
 		},
 		copy: {
-			all: {
+			files: {
 				files: [
 					{
 						cwd: SOURCE_DIR,
 						dest: BUILD_DIR,
 						dot: true,
 						expand: true,
-						src: ['!**/.{svn,git}/**','**'], // Ignore version control directories.
+						src: new Array( '**' ).concat( EXCLUDED_FILES )
 					}
 				]
-			},
-			dynamic: {
-				cwd: SOURCE_DIR,
-				dest: BUILD_DIR,
-				dot: true,
-				expand: true,
-				src: [],
-			}
-		},
-		less: {
-			core: {
-				files: {
-					// front-end
-					'src/templates/achievements/css/achievements.css':  'src/templates/achievements/css/dev/achievements.less',
-
-					// admin
-					'src/includes/admin/css/achievements.css':     'src/includes/admin/css/dev/achievements.less',
-					'src/includes/admin/css/admin-editindex.css':  'src/includes/admin/css/dev/admin-editindex.less',
-					'src/includes/admin/css/chosen.css':           'src/includes/admin/css/dev/chosen.less',
-					'src/includes/admin/css/supportedplugins.css': 'src/includes/admin/css/dev/supportedplugins.less',
-					'src/includes/admin/css/users.css':            'src/includes/admin/css/dev/users.less',
-				}
-			}
-		},
-		cssmin: {
-			ltr: {
-				cwd: SOURCE_DIR,
-				dest: BUILD_DIR,
-				expand: true,
-				ext: '.css',
-				src: [
-					'templates/achievements/css/achievements.css',
-					'includes/admin/css/{achievements,admin-editindex,chosen,supportedplugins,users}.css'
-				],
-				options: {
-					banner: '/*! http://wordpress.org/plugins/achievements/ */'
-				}
-			},
-			rtl: {
-				cwd: BUILD_DIR,
-				dest: BUILD_DIR,
-				expand: true,
-				ext: '.css',
-				src: [
-					// RTL from cssjanus
-					'templates/achievements/css/achievements-rtl.css',
-					'includes/admin/css/{achievements,admin-editindex,chosen,supportedplugins,users}-rtl.css'
-				],
-				options: {
-					banner: '/*! http://wordpress.org/plugins/achievements/ */'
-				}
 			}
 		},
 		cssjanus: {
 			core: {
 				expand: true,
-				cwd: SOURCE_DIR,
+				cwd: BUILD_DIR,
 				dest: BUILD_DIR,
 				ext: '-rtl.css',
-				src: [
-					'templates/achievements/css/achievements.css',
-					'includes/admin/css/{achievements,admin-editindex,chosen,supportedplugins,users}.css'
-				],
-				options: {
-					generateExactDuplicates: true
+				src: CSS,
+				options: { generateExactDuplicates: true }
+			}
+		},
+		cssmin: {
+			css: {
+				cwd: BUILD_DIR,
+				dest: BUILD_DIR,
+				expand: true,
+				src: CSS,
+				options: { banner: '/*! https://wordpress.org/plugins/stencils/ */' }
+			}
+		},
+		jshint: {
+			options: grunt.file.readJSON( '.jshintrc' ),
+			core: {
+				expand: true,
+				cwd: SOURCE_DIR,
+				src: JS,
+
+				/**
+				 * Limit JSHint's run to a single specified file: grunt jshint:core --file=filename.js
+				 *
+				 * @param {String} filepath
+				 * @returns {Bool}
+				 */
+				filter: function( filepath ) {
+					var index, file = grunt.option( 'file' );
+
+					// Don't filter when no target file is specified
+					if ( ! file ) {
+						return true;
+					}
+
+					// Normalise filepath for Windows
+					filepath = filepath.replace( /\\/g, '/' );
+					index = filepath.lastIndexOf( '/' + file );
+
+					// Match only the filename passed from cli
+					if ( filepath === file || ( -1 !== index && index === filepath.length - ( file.length + 1 ) ) ) {
+						return true;
+					}
+
+					return false;
 				}
+			}
+		},
+		jsvalidate:{
+			options:{
+				globals: {},
+				esprimaOptions:{},
+				verbose: false
+			},
+			build: {
+				files: { src: BUILD_DIR + '/**/*.js' }
+			},
+			dev: {
+				files: { src: JS }
 			}
 		},
 		uglify: {
 			core: {
-				cwd: SOURCE_DIR,
+				cwd: BUILD_DIR,
 				dest: BUILD_DIR,
 				expand: true,
-				ext: '.js',
-				src: [
-					'includes/admin/js/achievements.js',
-					'includes/admin/js/supportedplugins.js',
-					'templates/achievements/js/*.js'
-				],
+				src: JS
 			},
 			options: {
-				banner: '/*! http://wordpress.org/plugins/achievements/ */\n'
+				banner: '/*! https://wordpress.org/plugins/stencils/ */\n'
 			}
 		},
 		phpunit: {
-			all: {
-				dir: 'tests/phpunit/'
+			'default': {
+				cmd: 'phpunit',
+				args: ['-c', 'tests/phpunit.xml']
+			},
+			multisite: {
+				cmd: 'phpunit',
+				args: ['-c', 'tests/multisite.xml']
 			}
-		},
-		watch: {
-			files: ["src/templates/achievements/css/dev/*",
-							"src/includes/admin/css/dev/*"],
-			tasks: ["less"]
 		}
 	});
 
-	// Register tasks.
-	grunt.registerTask('build-dev',  ['clean:all', 'less:core']);
-	grunt.registerTask('build-prod', ['clean:all', 'less:core', 'copy:all', 'cssjanus:core', 'cssmin:ltr', 'cssmin:rtl', 'uglify:core', 'clean:build', 'phpunit:all']);
+
+	grunt.registerMultiTask( 'phpunit', 'Runs PHPUnit tests, including the AJAX and multisite tests.', function() {
+		grunt.util.spawn( {
+			cmd:  this.data.cmd,
+			args: this.data.args,
+			opts: { stdio: 'inherit' }
+		}, this.async() );
+	});
+
+	// Build tasks.
+	grunt.registerTask( 'dev',     [ 'clean:all', 'jsvalidate:dev' ] );
+	grunt.registerTask( 'test',    [ 'phpunit' ] );
+	grunt.registerTask( 'release', [ 'clean:all', 'phpunit', 'copy:files', 'cssjanus:core', 'cssmin:css', 'jsvalidate:build', 'uglify:core' ] );
 
 	// Default task.
-	grunt.registerTask('default', ['build-dev']);
+	grunt.registerTask( 'default', [ 'dev' ] );
 };
