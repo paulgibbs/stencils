@@ -20,13 +20,8 @@ Once you've installed Node.js and the Grunt CLI, you're ready to get started.
 Documentation
 -------------
 
-The `src` directory contains the Stencils' plugin core files. You can develop against the `src` directory like you normally would develop against any other WordPress plugins' SVN trunk.
+### `grunt` or `grunt dev`
+Generates the development-optimised source in the root directory.
 
-### `grunt` or `grunt build-dev`
-Generates the development-optimised source in the `src` directory.
-
-### `grunt build-prod`
+### `grunt prod`
 Generates the production-optimised source in the `build` directory.
-
-### `grunt clean:all`
-Removes the `build` directory.
