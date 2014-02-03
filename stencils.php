@@ -143,6 +143,10 @@ final class DKS_Stencils_Loader {
 	 */
 	private function setup_globals() {
 
+		// Versions
+		$this->version    = '3.8.1';
+		$this->db_version = 100;
+
 		// Paths
 		$this->file       = __FILE__;
 		$this->basename   = apply_filters( 'dks_basenname',       plugin_basename( $this->file ) );
@@ -152,6 +156,9 @@ final class DKS_Stencils_Loader {
 		// Includes
 		$this->includes_dir = apply_filters( 'dks_includes_dir', trailingslashit( $this->plugin_dir . 'includes' ) );
 		$this->includes_url = apply_filters( 'dks_includes_url', trailingslashit( $this->plugin_url . 'includes' ) );
+
+		// Other stuff
+		$this->domain = 'stencils';  // Unique identifier for retrieving translated strings
 	}
 
 	/**
@@ -166,9 +173,14 @@ final class DKS_Stencils_Loader {
 		require( $this->includes_dir . 'core-filters.php'      );
 
 		/**
-		 * wp-admin stuff
+		 * Admin
 		 */
 		if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {}
+
+		/**
+		 * WP-CLI
+		 */
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {}
 	}
 }
 
