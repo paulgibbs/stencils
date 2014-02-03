@@ -13,10 +13,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Main actions
- */
-
-/**
  * Main action responsible for constants, globals, and includes
  *
  * @since Stencils (1.0)
