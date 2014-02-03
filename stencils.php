@@ -12,7 +12,7 @@ Plugin Name: Stencils
 Plugin URI: http://stencilsplugin.com/
 Description: StencilsTodo
 Version: 1.0
-Requires at least: 3.7
+Requires at least: 3.8.1
 Tested up to: 3.8.20
 License: GPLv3
 Author: Paul Gibbs
@@ -21,7 +21,7 @@ Text Domain: stencils
 Network: false
 
 "Stencils"
-Copyright (C) 2013 Paul Gibbs
+Copyright (C) 2013-14 Paul Gibbs
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3 as published by
