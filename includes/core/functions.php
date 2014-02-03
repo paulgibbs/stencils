@@ -42,6 +42,10 @@ function dks_add_image_sizes() {}
  * @since Stencils (1.0)
  */
 function dks_body_class( $wp_classes, $custom_classes = array() ) {
+
+	if ( dks_is_stencils_post() )
+		$wp_classes[] = 'stencils';
+
 	return apply_filters( 'dks_body_class', $wp_classes, $custom_classes );
 }
 
