@@ -1,37 +1,31 @@
 {
-  "author": [
-    "Tammie Lister <example@example.com>",
-    "Paul Gibbs <paul@byotos.com>"
-  ],
-  "bugs": {
-    "url": "https://github.com/paulgibbs/stencils/issues"
-  },
-  "description": "StencilsTodo",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-less": "~0.7.0",
-    "grunt-contrib-cssmin": "~0.6.1",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-watch": "~0.5.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-cssjanus": "~0.1.1",
-    "grunt-phpunit": "~0.3.0",
-    "matchdep": "~0.1.2"
-  },
-  "keywords": [
-    "StencilsTodo"
-  ],
-  "homepage": "http://stencilsplugin.com",
-  "licenses": {
-    "type": "GPLv3",
-    "url": "https://github.com/paulgibbs/stencils/blob/master/src/license.txt"
-  },
-  "name": "stencils-for-wordpress",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/paulgibbs/stencils.git"
-  },
-  "version": "1.0"
+	"author": [
+		"Tammie Lister <example@example.com>",
+		"Paul Gibbs <paul@byotos.com>"
+	],
+	"bugs": { "url": "https://github.com/paulgibbs/stencils/issues" },
+	"description": "StencilsTodo",
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-clean": "~0.5.0",
+		"grunt-contrib-copy": "~0.4.1",
+		"grunt-contrib-cssmin": "~0.6.1",
+		"grunt-contrib-uglify": "~0.2.2",
+		"grunt-contrib-watch": "~0.5.1",
+		"grunt-contrib-jshint": "~0.7.0",
+		"grunt-cssjanus": "~0.1.1",
+		"grunt-phpunit": "~0.3.0",
+		"grunt-jsvalidate": "~0.2.2",
+		"matchdep": "~0.1.2",
+		"grunt-exec": "~0.4.3"
+	},
+	"homepage": "http://stencilsplugin.com",
+	"keywords": [ "StencilsTodo" ],
+	"license": "GPL-3.0+",
+	"name": "stencils-for-wordpress",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/paulgibbs/stencils.git"
+	},
+	"version": "1.0.0"
 }
