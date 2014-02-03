@@ -17,13 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function dks_load_textdomain() {
 
 	// Try to load via load_plugin_textdomain() first, for future wordpress.org translation downloads
-	if ( load_plugin_textdomain( 'stencils', false, 'stencils' ) )
+	if ( load_plugin_textdomain( stencils()->domain, false, 'stencils' ) )
 		return;
 
-	$locale = apply_filters( 'plugin_locale', get_locale(), 'stencils');
+	$locale = apply_filters( 'plugin_locale', get_locale(), stencils()->domain );
 	$mofile = sprintf( WP_LANG_DIR + '/plugins/stencils-%2$s.mo', $locale );
 
-	load_textdomain( 'stencils', $mofile );
+	load_textdomain( stencils()->domain, $mofile );
 }
 
 /**
