@@ -23,5 +23,5 @@ Documentation
 ### `grunt` or `grunt dev`
 Generates the development-optimised source in the root directory.
 
-### `grunt prod`
+### `grunt release`
 Generates the production-optimised source in the `build` directory.
