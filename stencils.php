@@ -176,7 +176,10 @@ final class DKS_Stencils_Loader {
 		/**
 		 * Admin
 		 */
-		if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {}
+		if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+			require( $this->includes_dir . 'admin/actions.php'   );
+			require( $this->includes_dir . 'admin/functions.php' );
+		}
 
 		/**
 		 * WP-CLI
