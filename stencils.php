@@ -171,6 +171,7 @@ final class DKS_Stencils_Loader {
 		require( $this->includes_dir . 'common/functions.php'    );
 		require( $this->includes_dir . 'common/actions.php'      );
 		require( $this->includes_dir . 'common/filters.php'      );
+		require( $this->includes_dir . 'core/functions.php'      );
 
 		/**
 		 * Admin
