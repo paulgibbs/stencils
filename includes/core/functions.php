@@ -29,6 +29,16 @@ function dks_maybe_load_stencils_template( $template_path ) {
 	return apply_filters( 'dks_maybe_load_stencils_template', $template_path );
 }
 
+/**
+ * Get a list of which post types can be used with Stencils
+ *
+ * @since Stencils (1.0)
+ * @return array
+ */
+function dks_get_stencils_post_types() {
+	return apply_filters( 'dks_get_stencils_post_types', array( 'post' ) );
+}
+
 
 /**
  * "is" functions. Use these to help you make life-changing decisions.
