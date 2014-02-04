@@ -18,6 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 add_action( 'admin_init', 'dks_admin_init' );
 
+// When WordPress updates a post, update its stencil.
+add_action( 'save_post', 'dks_maybe_generate_stencil' );
+
 /**
  * Piggy back admin_init action
  *
