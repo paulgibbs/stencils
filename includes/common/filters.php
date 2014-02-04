@@ -15,4 +15,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Attach Stencils to WordPress
  */
 add_filter( 'body_class',       'dks_body_class', 10, 2 );
-add_filter( 'template_include', 'dks_maybe_load_stencils_template' )
+add_filter( 'template_include', 'dks_maybe_load_stencils_template' );
