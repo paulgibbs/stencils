@@ -167,10 +167,10 @@ final class DKS_Stencils_Loader {
 	 * @since Stencils (1.0)
 	 */
 	private function includes() {
-		require( $this->includes_dir . 'core/dependencies.php' );  // load first
-		require( $this->includes_dir . 'core/functions.php'    );
-		require( $this->includes_dir . 'core/actions.php'      );
-		require( $this->includes_dir . 'core/filters.php'      );
+		require( $this->includes_dir . 'common/dependencies.php' );  // load first
+		require( $this->includes_dir . 'common/functions.php'    );
+		require( $this->includes_dir . 'common/actions.php'      );
+		require( $this->includes_dir . 'common/filters.php'      );
 
 		/**
 		 * Admin
