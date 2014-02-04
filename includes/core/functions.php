@@ -21,6 +21,10 @@ function dks_maybe_load_stencils_template( $template_path ) {
 	if ( ! is_singular() || ! dks_is_stencils_post() )
 		return $template_path;
 
+	// Debug: for development, if we're in twentytwelve, use its full width template.
+	if ( wp_get_theme()->name === 'Twenty Twelve' )
+		$template_path = get_stylesheet_directory() . '/page-templates/full-width.php';
+
 	// What this will eventually do is load the full-width template from the theme once that option is implemented.
 	return apply_filters( 'dks_maybe_load_stencils_template', $template_path );
 }
@@ -46,5 +50,10 @@ function dks_is_stencils_post( $post_id = 0 ) {
 		return false;
 
 	$retval = (bool) get_post_meta( $post_id, 'has_stencils', true );
+
+	// Debug: for development, any post under twentytwelve is a stencils post :)
+	if ( wp_get_theme()->name === 'Twenty Twelve' )
+		$retval = true;
+
 	return (bool) apply_filters( 'dks_is_stencils_post', $retval, $post_id );
 }
