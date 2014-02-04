@@ -1,9 +1,9 @@
 <?php
 /**
- * Core functions
+ * Common functions
  *
  * @package Stencils
- * @subpackage CoreFunctions
+ * @subpackage CommonFunctions
  */
 
 // Exit if accessed directly

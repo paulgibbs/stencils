@@ -6,7 +6,7 @@
  * This is also done in Achievements, BuddyPress, and bbPress. We do this by mirroring existing WordPress actions in many places allowing dependant plugins to hook into the Stencils-specific ones, thus guaranteeing proper code execution.
  *
  * @package Stencils
- * @subpackage CoreDependencies
+ * @subpackage CommonDependencies
  */
 
 // Exit if accessed directly
